@@ -28,8 +28,8 @@ class ShotDataColorFormat(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'colorspace': 'str',
-        'eotf': 'str',
+        'colorspace': 'Colorspace',
+        'eotf': 'Eotf',
         'lut': 'str'
     }
 
@@ -56,10 +56,9 @@ class ShotDataColorFormat(object):
     def colorspace(self):
         """Gets the colorspace of this ShotDataColorFormat.  # noqa: E501
 
-        Color space of the Shot  # noqa: E501
 
         :return: The colorspace of this ShotDataColorFormat.  # noqa: E501
-        :rtype: str
+        :rtype: Colorspace
         """
         return self._colorspace
 
@@ -67,10 +66,9 @@ class ShotDataColorFormat(object):
     def colorspace(self, colorspace):
         """Sets the colorspace of this ShotDataColorFormat.
 
-        Color space of the Shot  # noqa: E501
 
         :param colorspace: The colorspace of this ShotDataColorFormat.  # noqa: E501
-        :type: str
+        :type: Colorspace
         """
 
         self._colorspace = colorspace
@@ -79,10 +77,9 @@ class ShotDataColorFormat(object):
     def eotf(self):
         """Gets the eotf of this ShotDataColorFormat.  # noqa: E501
 
-        EOTF of the Shot  # noqa: E501
 
         :return: The eotf of this ShotDataColorFormat.  # noqa: E501
-        :rtype: str
+        :rtype: Eotf
         """
         return self._eotf
 
@@ -90,10 +87,9 @@ class ShotDataColorFormat(object):
     def eotf(self, eotf):
         """Sets the eotf of this ShotDataColorFormat.
 
-        EOTF of the Shot  # noqa: E501
 
         :param eotf: The eotf of this ShotDataColorFormat.  # noqa: E501
-        :type: str
+        :type: Eotf
         """
 
         self._eotf = eotf

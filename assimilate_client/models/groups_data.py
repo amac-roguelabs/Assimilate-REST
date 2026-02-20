@@ -28,14 +28,40 @@ class GroupsData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'groups': 'list[GroupData]'
     }
 
     attribute_map = {
+        'groups': 'groups'
     }
 
-    def __init__(self):  # noqa: E501
+    def __init__(self, groups=None):  # noqa: E501
         """GroupsData - a model defined in Swagger"""  # noqa: E501
+        self._groups = None
         self.discriminator = None
+        if groups is not None:
+            self.groups = groups
+
+    @property
+    def groups(self):
+        """Gets the groups of this GroupsData.  # noqa: E501
+
+
+        :return: The groups of this GroupsData.  # noqa: E501
+        :rtype: list[GroupData]
+        """
+        return self._groups
+
+    @groups.setter
+    def groups(self, groups):
+        """Sets the groups of this GroupsData.
+
+
+        :param groups: The groups of this GroupsData.  # noqa: E501
+        :type: list[GroupData]
+        """
+
+        self._groups = groups
 
     def to_dict(self):
         """Returns the model properties as a dict"""

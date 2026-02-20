@@ -1,6 +1,6 @@
 # assimilate_client.SystemApi
 
-All URIs are relative to *http://localhost:8080/APIV2*
+All URIs are relative to *https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -2,9 +2,7 @@
 
 The Assimilate REST API provides a programming interface to the data and
 functions of the Assimilate Product Suite software: manage projects,
-load and edit media clips, playback and render media, etc. The REST API
-is available as of version 9.9 build 1190 of the Assimilate Product
-Suite.
+load and edit media clips, playback and render media, etc. *The REST API is currently only available with a special BETA build of the Assimilate Product Suite, which is not yet publically available*. 
 
 The REST API is available through a http webserver within the Assimilate
 software, which is activated through the System Settings in the
@@ -141,6 +139,12 @@ menus when inside a project in the software, or as a system event –
 where the script is invoked on e.g. start / stop the software, open /
 close a project or switching user profiles.
 
+With a Custom Command tyou can also define user-input fields. These are 
+presented to the User when invoking a Custom Command. A field can be
+text input, a dropdown option list, numeric input or a yes/no option. 
+All the user input is passed on to the underlying script in command line
+parameters.
+
 **Support**
 
 The Assimilate Product Suite is available for Windows and MacOS. The
@@ -162,7 +166,6 @@ If you have a valid support contract, then you can also contact us
 through the regular email support channel.
 
 The availability and coverage of the REST API depends on the specific
-application.
+application within the Assimilate Product Suite that is used, as well as
+the active toolset and license that is used.
 
-\[list applications / REST capabilities / restrictions, including trial
-version\]

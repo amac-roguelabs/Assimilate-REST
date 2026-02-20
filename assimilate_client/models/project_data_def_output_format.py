@@ -28,8 +28,8 @@ class ProjectDataDefOutputFormat(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'color_space': 'str',
-        'eotf': 'str',
+        'colorspace': 'Colorspace',
+        'eotf': 'Eotf',
         'bit_depth': 'int',
         'bit_type': 'str',
         'components': 'str',
@@ -37,7 +37,7 @@ class ProjectDataDefOutputFormat(object):
     }
 
     attribute_map = {
-        'color_space': 'color_space',
+        'colorspace': 'colorspace',
         'eotf': 'eotf',
         'bit_depth': 'bit_depth',
         'bit_type': 'bit_type',
@@ -45,17 +45,17 @@ class ProjectDataDefOutputFormat(object):
         'filetype': 'filetype'
     }
 
-    def __init__(self, color_space=None, eotf=None, bit_depth=None, bit_type=None, components=None, filetype=None):  # noqa: E501
+    def __init__(self, colorspace=None, eotf=None, bit_depth=None, bit_type=None, components=None, filetype=None):  # noqa: E501
         """ProjectDataDefOutputFormat - a model defined in Swagger"""  # noqa: E501
-        self._color_space = None
+        self._colorspace = None
         self._eotf = None
         self._bit_depth = None
         self._bit_type = None
         self._components = None
         self._filetype = None
         self.discriminator = None
-        if color_space is not None:
-            self.color_space = color_space
+        if colorspace is not None:
+            self.colorspace = colorspace
         if eotf is not None:
             self.eotf = eotf
         if bit_depth is not None:
@@ -68,36 +68,33 @@ class ProjectDataDefOutputFormat(object):
             self.filetype = filetype
 
     @property
-    def color_space(self):
-        """Gets the color_space of this ProjectDataDefOutputFormat.  # noqa: E501
+    def colorspace(self):
+        """Gets the colorspace of this ProjectDataDefOutputFormat.  # noqa: E501
 
-        Default color space of a timeline / Construct  # noqa: E501
 
-        :return: The color_space of this ProjectDataDefOutputFormat.  # noqa: E501
-        :rtype: str
+        :return: The colorspace of this ProjectDataDefOutputFormat.  # noqa: E501
+        :rtype: Colorspace
         """
-        return self._color_space
+        return self._colorspace
 
-    @color_space.setter
-    def color_space(self, color_space):
-        """Sets the color_space of this ProjectDataDefOutputFormat.
+    @colorspace.setter
+    def colorspace(self, colorspace):
+        """Sets the colorspace of this ProjectDataDefOutputFormat.
 
-        Default color space of a timeline / Construct  # noqa: E501
 
-        :param color_space: The color_space of this ProjectDataDefOutputFormat.  # noqa: E501
-        :type: str
+        :param colorspace: The colorspace of this ProjectDataDefOutputFormat.  # noqa: E501
+        :type: Colorspace
         """
 
-        self._color_space = color_space
+        self._colorspace = colorspace
 
     @property
     def eotf(self):
         """Gets the eotf of this ProjectDataDefOutputFormat.  # noqa: E501
 
-        Default EOTF of a timeline / Construct  # noqa: E501
 
         :return: The eotf of this ProjectDataDefOutputFormat.  # noqa: E501
-        :rtype: str
+        :rtype: Eotf
         """
         return self._eotf
 
@@ -105,10 +102,9 @@ class ProjectDataDefOutputFormat(object):
     def eotf(self, eotf):
         """Sets the eotf of this ProjectDataDefOutputFormat.
 
-        Default EOTF of a timeline / Construct  # noqa: E501
 
         :param eotf: The eotf of this ProjectDataDefOutputFormat.  # noqa: E501
-        :type: str
+        :type: Eotf
         """
 
         self._eotf = eotf

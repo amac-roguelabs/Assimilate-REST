@@ -1,6 +1,6 @@
 # assimilate_client.ProjectsApi
 
-All URIs are relative to *http://localhost:8080/APIV2*
+All URIs are relative to *https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -1733,7 +1733,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_constructs**
-> GroupsData get_constructs(level=level)
+> ConstructsData get_constructs(level=level)
 
 Construct List
 
@@ -1767,7 +1767,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupsData**](GroupsData.md)
+[**ConstructsData**](ConstructsData.md)
 
 ### Authorization
 

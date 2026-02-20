@@ -1,4 +1,4 @@
-# ProjectListInner
+# ProjectListProjects
 
 ## Properties
 Name | Type | Description | Notes

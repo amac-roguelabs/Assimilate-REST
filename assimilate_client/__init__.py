@@ -42,10 +42,13 @@ from assimilate_client.models.colorgrade_data_soft_clip_high import ColorgradeDa
 from assimilate_client.models.colorgrade_data_soft_clip_low import ColorgradeDataSoftClipLow
 from assimilate_client.models.colorgrade_data_temperature import ColorgradeDataTemperature
 from assimilate_client.models.colorgrade_data_tone import ColorgradeDataTone
+from assimilate_client.models.colorspace import Colorspace
 from assimilate_client.models.construct_data import ConstructData
 from assimilate_client.models.construct_data_audio import ConstructDataAudio
 from assimilate_client.models.construct_data_resolution import ConstructDataResolution
+from assimilate_client.models.constructs_data import ConstructsData
 from assimilate_client.models.delete_media_data import DeleteMediaData
+from assimilate_client.models.eotf import Eotf
 from assimilate_client.models.error_message import ErrorMessage
 from assimilate_client.models.error_message_error import ErrorMessageError
 from assimilate_client.models.group_data import GroupData
@@ -72,7 +75,7 @@ from assimilate_client.models.project_data_hdr_metadata import ProjectDataHdrMet
 from assimilate_client.models.project_data_hdr_metadata_primaries import ProjectDataHdrMetadataPrimaries
 from assimilate_client.models.project_data_project_paths import ProjectDataProjectPaths
 from assimilate_client.models.project_list import ProjectList
-from assimilate_client.models.project_list_inner import ProjectListInner
+from assimilate_client.models.project_list_projects import ProjectListProjects
 from assimilate_client.models.render_queue_item import RenderQueueItem
 from assimilate_client.models.render_queue_list import RenderQueueList
 from assimilate_client.models.selected_shots_data import SelectedShotsData

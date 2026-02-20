@@ -11,6 +11,9 @@ info:
     name: MIT
     url: 'https://opensource.org/license/mit'
 servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0
   - description: Local http server of an Assimilate Product Suite application
     url: 'http://localhost:8080/APIV2'
 tags:
@@ -991,7 +994,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/groups_data'
+                $ref: '#/components/schemas/constructs_data'
         4XX:
           description: Client Error
           content:
@@ -2378,6 +2381,63 @@ components:
       x-examples:
         Example 1: '15:54:12:23'
       description: 'Timecode HH:MM:SS:FF'
+    colorspace:
+      description: Color space
+      enum:
+        - ACES (AP0)
+        - ACEScg (AP1)
+        - Adobe RGB (1998)
+        - Adobe Wide Gamut
+        - Apple Wide Gamut
+        - ARRI Wide Gamut 3
+        - ARRI Wide Gamut 4
+        - Blackmagic DWG
+        - BMD Wide Gamut
+        - Canon Cinema Gamut
+        - DCI XYZ
+        - DJI D-Gamut
+        - Fujifilm F-Gamut C
+        - P3 D60
+        - P3 D65
+        - P3 DCI
+        - Panasonic V-Gamut
+        - Rec2020
+        - Rec709
+        - RED Wide Gamut
+        - Sony S-Gamut3
+        - Sony S-Gamut3 Cine
+        - sRGB
+        - XYZ
+    eotf:
+      description: EOTF (Electro-Optical Transfer Function)
+      enum:
+        - ACEScc
+        - ACEScct
+        - Apple Log
+        - ARRI LogC3
+        - ARRI LogC4
+        - Blackmagic DI
+        - BMD Film
+        - BMD Film Gen 5
+        - Canon Log2
+        - Canon Log3
+        - Cineon Log
+        - DJI D-Log
+        - Fujifilm F-Log
+        - Fujifilm F-Log2
+        - Gamma 2.2
+        - Gamma 2.4
+        - Gamma 2.6 (DCI)
+        - HLG HDR
+        - HLG Scene HDR
+        - Leica L-Log
+        - Nikon N-Log
+        - Panasonic V-Log
+        - PQ HDR
+        - RED Log3G10
+        - Scene Linear
+        - Sony S-Log2
+        - Sony S-Log3
     system_data:
       title: system_data
       type: object
@@ -2432,49 +2492,6 @@ components:
     project_data:
       title: project_data
       type: object
-      x-examples:
-        Example 1:
-          name: Project Alpha
-          project_paths:
-            media_path: "C:\\Media"
-            render_path: "C:\\Media\\Render"
-            cache_path: "C:\\Media\\Cache"
-            LUT_path: "C:\\Media\\LUT"
-          def_image_format:
-            resolution:
-              width: 1920
-              height: 1080
-            aspect: 1.0
-            framerate: 25.0 
-          def_output_template:
-            template: string
-          def_output_format:
-            color_space: string
-            eotf: string
-            bit_depth: 0
-            bit_type: Float
-            components: RGB
-            filetype: DPX
-          color_management:
-            enable: true
-            acess_version: 1.1
-            acess_log: ACES linear (APO))
-          hdr_metadata:
-            mode: 'Off'
-            eotf: Gamma SDR
-            primaries:
-              red_x: 0
-              red_y: 0
-              green_x: 0
-              green_y: 0
-              blue_x: 0
-              blue_y: 0
-              white_x: 0
-              white_y: 0
-              lum_min: 0
-              lum_max: 0
-              max_cll: 0
-              max_fall: 0
       properties:
         name:
           type: string
@@ -2555,16 +2572,10 @@ components:
           x-stoplight:
             id: 24slw51jck0hf
           properties:
-            color_space:
-              type: string
-              description: Default color space of a timeline / Construct
-              x-stoplight:
-                id: mfpn2bp6k008k
+            colorspace:
+              $ref: '#/components/schemas/colorspace'
             eotf:
-              type: string
-              description: Default EOTF of a timeline / Construct
-              x-stoplight:
-                id: 4dj2ic1kd0baa
+              $ref: '#/components/schemas/eotf'
             bit_depth:
               x-stoplight:
                 id: 5x8yixurfno2z
@@ -2713,30 +2724,34 @@ components:
                   x-stoplight:
                     id: kdsvhfyjtgbvd
     project_list:
+      type: object
       title: project_list
-      type: array
-      description: Project List
+      description: List of Projects
       x-examples:
         Example 1:
-          - modified: '11/07/2025 14:32'
-            name: Project 1
-          - modified: '25/08/2025 16:48'
-            name: Project 2
-      items:
-        x-stoplight:
-          id: rdgp0z9q2pue0
-        type: object
-        properties:
-          name:
-            type: string
-            description: Project name
+          - projects:
+            - modified: '11/07/2025 14:32'
+              name: Project 1
+            - modified: '25/08/2025 16:48'
+              name: Project 2
+      properties:
+        projects:
+          type: array
+          items:
             x-stoplight:
-              id: kzae96iedxk17
-          modified:
-            type: string
-            description: Last modified date
-            x-stoplight:
-              id: 3bbci8wrfks2u
+              id: rdgp0z9q2pue0
+            type: object
+            properties:
+              name:
+                type: string
+                description: Project name
+                x-stoplight:
+                  id: kzae96iedxk17
+              modified:
+                type: string
+                description: Last modified date
+                x-stoplight:
+                  id: 3bbci8wrfks2u
     error_message:
       type: object
       title: error_message
@@ -2795,10 +2810,14 @@ components:
             x-stoplight:
               id: a56yyab412kj1
     groups_data:
-      type: array
+      type: object
       title: groups_data
-      items:
-        $ref: '#/components/schemas/group_data'
+      description: List of groups
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/group_data'
     group_data:
       type: object
       title: group_data
@@ -2839,7 +2858,6 @@ components:
           $ref: '#/components/schemas/uuid'
         type_uuid:
           $ref: '#/components/schemas/uuid'
-          description: The Shot type (read only)
         file:
           type: string
           description: Full filename of the Shot media
@@ -3024,11 +3042,9 @@ components:
             id: 5h4g3f2e1d0c9
           properties:
             colorspace:
-              type: string
-              description: Color space of the Shot
+              $ref: '#/components/schemas/colorspace'
             eotf:
-              type: string
-              description: EOTF of the Shot
+              $ref: '#/components/schemas/eotf'
             lut:
               type: string
               description: LUT applied to the shot
@@ -3075,6 +3091,15 @@ components:
           $ref: '#/components/schemas/staging_data'
         inputs:
           $ref: '#/components/schemas/inputs_data'
+    constructs_data:
+      type: object
+      title: constructs_data
+      description: List of Constructs in the Project
+      properties:
+        constructs:
+          type: array
+          items:
+            $ref: '#/components/schemas/construct_data'
     construct_data:
       type: object
       title: construct_data
@@ -3104,7 +3129,6 @@ components:
           $ref: '#/components/schemas/uuid'
         record_tc:
           $ref: '#/components/schemas/timecode'
-          description: The start timecode of the timeline.
         resolution:
           type: object
           description: Resolution in pixels of the Construct / timeline output
@@ -4111,4 +4135,3 @@ components:
           type: number
           x-stoplight:
             id: kbseuhub1egc6
-  

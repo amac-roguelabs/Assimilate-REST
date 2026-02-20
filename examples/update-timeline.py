@@ -14,34 +14,6 @@ system_api = SystemApi(api_client)
 projects_api = ProjectsApi(api_client)
 app_api = ApplicationApi(api_client)
 
-def to_json_compatible(value):
-    """Converts any Swagger response (object, dict, list), 
-    removes None fields, and returns JSON-safe structure."""
-
-    # Swagger model object
-    if hasattr(value, "to_dict"):
-        value = value.to_dict()
-
-    # dict
-    if isinstance(value, dict):
-        cleaned = {}
-        for k, v in value.items():
-            if v is None:
-                continue  # <<< HIER: skip None
-            cleaned[k] = to_json_compatible(v)
-        return cleaned
-
-    # lijst
-    if isinstance(value, list):
-        return [to_json_compatible(v) for v in value]
-
-    # primitive
-    return value
-
-def print_json(response):
-    data = to_json_compatible(response)
-    print(json.dumps(data, indent=2))
-
 '''
 This code processes the currently selected shots in a construct and applies transitions 
 and scaling animations to each shot.
