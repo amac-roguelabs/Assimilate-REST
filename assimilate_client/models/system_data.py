@@ -37,8 +37,7 @@ class SystemData(object):
         'shared_folder': 'str',
         'http_server_ip': 'str',
         'http_server_port': 'int',
-        'http_server_auto_start': 'bool',
-        'count_from_one': 'bool'
+        'http_server_auto_start': 'bool'
     }
 
     attribute_map = {
@@ -51,11 +50,10 @@ class SystemData(object):
         'shared_folder': 'shared_folder',
         'http_server_ip': 'http_server_ip',
         'http_server_port': 'http_server_port',
-        'http_server_auto_start': 'http_server_auto_start',
-        'count_from_one': 'count_from_one'
+        'http_server_auto_start': 'http_server_auto_start'
     }
 
-    def __init__(self, version=None, build=None, rest_version=None, system_name=None, users_folder=None, projects_folder=None, shared_folder=None, http_server_ip=None, http_server_port=None, http_server_auto_start=None, count_from_one=None):  # noqa: E501
+    def __init__(self, version=None, build=None, rest_version=None, system_name=None, users_folder=None, projects_folder=None, shared_folder=None, http_server_ip=None, http_server_port=None, http_server_auto_start=None):  # noqa: E501
         """SystemData - a model defined in Swagger"""  # noqa: E501
         self._version = None
         self._build = None
@@ -67,7 +65,6 @@ class SystemData(object):
         self._http_server_ip = None
         self._http_server_port = None
         self._http_server_auto_start = None
-        self._count_from_one = None
         self.discriminator = None
         if version is not None:
             self.version = version
@@ -89,8 +86,6 @@ class SystemData(object):
             self.http_server_port = http_server_port
         if http_server_auto_start is not None:
             self.http_server_auto_start = http_server_auto_start
-        if count_from_one is not None:
-            self.count_from_one = count_from_one
 
     @property
     def version(self):
@@ -321,29 +316,6 @@ class SystemData(object):
         """
 
         self._http_server_auto_start = http_server_auto_start
-
-    @property
-    def count_from_one(self):
-        """Gets the count_from_one of this SystemData.  # noqa: E501
-
-        Count frames and slots from 1 instead of starting at 0 (readonly)  # noqa: E501
-
-        :return: The count_from_one of this SystemData.  # noqa: E501
-        :rtype: bool
-        """
-        return self._count_from_one
-
-    @count_from_one.setter
-    def count_from_one(self, count_from_one):
-        """Sets the count_from_one of this SystemData.
-
-        Count frames and slots from 1 instead of starting at 0 (readonly)  # noqa: E501
-
-        :param count_from_one: The count_from_one of this SystemData.  # noqa: E501
-        :type: bool
-        """
-
-        self._count_from_one = count_from_one
 
     def to_dict(self):
         """Returns the model properties as a dict"""

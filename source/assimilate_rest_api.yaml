@@ -2941,11 +2941,6 @@ components:
           type: boolean
           x-stoplight:
             id: uxdna1ryem5m8
-        count_from_one:
-          description: 'Count frames and slots from 1 instead of starting at 0. When true, the frame values returned by the player/playmode endpoint reflect the user-facing frame numbering (readonly).'
-          type: boolean
-          x-stoplight:
-            id: k7f2m9xn4p1q3
     application_data:
       title: application_data
       type: object
