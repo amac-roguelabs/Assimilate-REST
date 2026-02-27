@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fps** | **float** | Frames per second of the Construct output | [optional] 
 **name** | **str** | Name of the Construct | 
-**notes** | [**list[NotesData]**](NotesData.md) |  | [optional] 
+**notes** | [**list[NoteData]**](NoteData.md) | Notes of the Construct | [optional] 
 **parent** | [**Uuid**](Uuid.md) |  | [optional] 
 **record_tc** | [**Timecode**](Timecode.md) |  | [optional] 
 **resolution** | [**ConstructDataResolution**](ConstructDataResolution.md) |  | [optional] 

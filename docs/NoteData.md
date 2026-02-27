@@ -1,4 +1,4 @@
-# NotesDataInner
+# NoteData
 
 ## Properties
 Name | Type | Description | Notes

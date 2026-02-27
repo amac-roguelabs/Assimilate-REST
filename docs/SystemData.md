@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **version** | **str** | Software version (readonly) | [optional] 
 **build** | **str** | Software build number (readonly) | [optional] 
+**rest_version** | **str** | REST API version (readonly) | [optional] 
 **system_name** | **str** | System name | [optional] 
 **users_folder** | **str** | Location for user profiles | [optional] 
 **projects_folder** | **str** | Location for projects | [optional] 

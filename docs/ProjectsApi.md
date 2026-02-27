@@ -1,6 +1,6 @@
 # assimilate_client.ProjectsApi
 
-All URIs are relative to *https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0*
+All URIs are relative to *http://localhost:8080/APIV2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,7 +29,7 @@ Method | HTTP request | Description
 [**get_construct_current_outputs**](ProjectsApi.md#get_construct_current_outputs) | **GET** /constructs/current/outputs | Output List (CC)
 [**get_construct_current_selected_shots**](ProjectsApi.md#get_construct_current_selected_shots) | **GET** /constructs/current/sel_shots | Shot Selection (CC)
 [**get_construct_current_slot**](ProjectsApi.md#get_construct_current_slot) | **GET** /constructs/current/slots/{slot_IDX} | Slot Get Properties (CC)
-[**get_construct_current_slot_shots**](ProjectsApi.md#get_construct_current_slot_shots) | **GET** /constructs/current/versions/{slot_IDX}/versions | Shot List (CC)
+[**get_construct_current_slot_shots**](ProjectsApi.md#get_construct_current_slot_shots) | **GET** /constructs/current/slots/{slot_IDX}/versions | Shot List (CC)
 [**get_construct_current_slot_version**](ProjectsApi.md#get_construct_current_slot_version) | **GET** /constructs/current/slots/{slot_IDX}/versions/{version_IDX} | Shot Get Properties (CC)
 [**get_construct_current_slots**](ProjectsApi.md#get_construct_current_slots) | **GET** /constructs/current/slots | Slot List (CC)
 [**get_construct_output**](ProjectsApi.md#get_construct_output) | **GET** /constructs/{construct_UUID}/outputs/{output_id} | Output Get Properties (CID)
@@ -65,6 +65,7 @@ Method | HTTP request | Description
 [**set_construct_output**](ProjectsApi.md#set_construct_output) | **PUT** /constructs/{construct_UUID}/outputs/{output_id} | Output Set Properties (CID)
 [**set_construct_slot**](ProjectsApi.md#set_construct_slot) | **PUT** /constructs/{construct_UUID}/slots/{slot_IDX} | Slot Set Properties (CID)
 [**set_construct_slot_shot**](ProjectsApi.md#set_construct_slot_shot) | **PUT** /constructs/{construct_UUID}/slots/{slot_IDX}/versions/{version_IDX} | Shot Set Properties (VRS)
+[**set_constructs_current**](ProjectsApi.md#set_constructs_current) | **PUT** /constructs/current | Construct Current Set Properties
 [**set_group**](ProjectsApi.md#set_group) | **PUT** /groups/{group_UUID} | Group Set Properties
 [**set_projects_item**](ProjectsApi.md#set_projects_item) | **PUT** /projects/item/{projectID} | Project Set Properties
 [**set_shot**](ProjectsApi.md#set_shot) | **PUT** /shot/{shot_id} | Shot Set Properties
@@ -115,7 +116,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_construct_current_output**
-> ShotsData add_construct_current_output(body, level=level)
+> ShotData add_construct_current_output(body, level=level)
 
 Output Add (CC)
 
@@ -151,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ShotsData**](ShotsData.md)
+[**ShotData**](ShotData.md)
 
 ### Authorization
 
@@ -213,7 +214,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_construct_output**
-> ShotsData add_construct_output(body, construct_uuid, level=level)
+> ShotData add_construct_output(body, construct_uuid, level=level)
 
 Output Add (CID)
 
@@ -251,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ShotsData**](ShotsData.md)
+[**ShotData**](ShotData.md)
 
 ### Authorization
 
@@ -3065,6 +3066,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ShotData**](ShotData.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_constructs_current**
+> ConstructData set_constructs_current(body, level=level)
+
+Construct Current Set Properties
+
+Set the properties of the active Construct in the active Group.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import assimilate_client
+from assimilate_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = assimilate_client.ProjectsApi()
+body = assimilate_client.ConstructData() # ConstructData | json with construct data
+level = 'level_example' # str | Level of detail. If set to ALL the full data model is returned. (optional)
+
+try:
+    # Construct Current Set Properties
+    api_response = api_instance.set_constructs_current(body, level=level)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProjectsApi->set_constructs_current: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ConstructData**](ConstructData.md)| json with construct data | 
+ **level** | **str**| Level of detail. If set to ALL the full data model is returned. | [optional] 
+
+### Return type
+
+[**ConstructData**](ConstructData.md)
 
 ### Authorization
 

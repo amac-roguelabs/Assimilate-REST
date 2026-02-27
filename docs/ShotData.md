@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **mos** | **bool** | Mit Ohne Sound Shot | [optional] 
 **audio** | [**ShotDataAudio**](ShotDataAudio.md) |  | [optional] 
 **metadata** | [**Metadata**](Metadata.md) |  | [optional] 
-**notes** | [**NotesData**](NotesData.md) |  | [optional] 
+**notes** | [**list[NoteData]**](NoteData.md) | Notes of the Shot | [optional] 
 **staging** | [**StagingData**](StagingData.md) |  | [optional] 
 **inputs** | [**InputsData**](InputsData.md) |  | [optional] 
 

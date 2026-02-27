@@ -1,5 +1,5 @@
 import json
-
+import pkg_resources
 
 from assimilate_client import *
 from assimilate_client.api import *
@@ -119,10 +119,19 @@ def process_shot(item, prev_item, cw, ch):
     projects_api.set_shot(shot_id=item.uuid, body=shot)
 
 try:
+    server_version = system_api.get_system_properties().rest_version
+    print(f"Server version: {server_version}")
+    
+    client_version = pkg_resources.get_distribution("assimilate_client").version
+    print(f"Client version: {client_version}\n")
+
+    if (server_version != client_version):
+        print("❌ Error server and client versin are not the same")
+    
     construct = projects_api.get_constructs_current()
     cw, ch = construct.resolution.w, construct.resolution.h
 
-    print(f"Construct size: {cw} {ch}")
+    print(f"Construct size: {cw} {ch}\n")
 
     selected_shots = projects_api.get_construct_current_selected_shots()
     selection = selected_shots.selection

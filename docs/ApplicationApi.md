@@ -1,6 +1,6 @@
 # assimilate_client.ApplicationApi
 
-All URIs are relative to *https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0*
+All URIs are relative to *http://localhost:8080/APIV2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,12 +23,13 @@ Method | HTTP request | Description
 [**do_application_render_snapshot**](ApplicationApi.md#do_application_render_snapshot) | **POST** /application/tools/image | Render Snapshot
 [**do_application_render_start**](ApplicationApi.md#do_application_render_start) | **POST** /application/render/start | Render Queue Start
 [**do_application_render_stop**](ApplicationApi.md#do_application_render_stop) | **POST** /application/render/stop | Render Queue Stop
-[**do_application_render_stop_item**](ApplicationApi.md#do_application_render_stop_item) | **POST** /application/render/stop{output_UUID} | Render Queue Item Stop
+[**do_application_render_stop_item**](ApplicationApi.md#do_application_render_stop_item) | **POST** /application/render/stop/{output_UUID} | Render Queue Item Stop
 [**do_application_restart**](ApplicationApi.md#do_application_restart) | **POST** /application/restart | Application Restart
 [**do_application_shutdown**](ApplicationApi.md#do_application_shutdown) | **POST** /application/shutdown | Application Shutdown
 [**get_application_player_playmode**](ApplicationApi.md#get_application_player_playmode) | **GET** /application/player/playmode | Player Get Mode
 [**get_application_render_queue**](ApplicationApi.md#get_application_render_queue) | **GET** /application/render | Render Queue List
 [**get_application_render_queue_item**](ApplicationApi.md#get_application_render_queue_item) | **GET** /application/render/{output_UUID} | Render Queue Item Get
+[**get_application_state**](ApplicationApi.md#get_application_state) | **GET** /application | Application Status
 [**post_application_render_start_item**](ApplicationApi.md#post_application_render_start_item) | **POST** /application/render/start/{output_UUID} | Render Queue Item Start
 [**set_application_player_playmode**](ApplicationApi.md#set_application_player_playmode) | **PUT** /application/player/playmode | Player Set Mode
 
@@ -934,6 +935,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RenderQueueItem**](RenderQueueItem.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_application_state**
+> ApplicationData get_application_state()
+
+Application Status
+
+Get the state of the application
+
+### Example
+```python
+from __future__ import print_function
+import time
+import assimilate_client
+from assimilate_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = assimilate_client.ApplicationApi()
+
+try:
+    # Application Status
+    api_response = api_instance.get_application_state()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ApplicationApi->get_application_state: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ApplicationData**](ApplicationData.md)
 
 ### Authorization
 

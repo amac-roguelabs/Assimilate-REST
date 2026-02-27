@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: |
     REST API for the Assimilate Product Suite software.
-  version: 1.0.0
+  version: 1.0.1
   title: Assimilate REST API
   termsOfService: 'https://myassimilate.assimilateinc.com/TermsOfService.html'
   contact:
@@ -11,9 +11,6 @@ info:
     name: MIT
     url: 'https://opensource.org/license/mit'
 servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/AssimilateInc/AMSREST/1.0.0
   - description: Local http server of an Assimilate Product Suite application
     url: 'http://localhost:8080/APIV2'
 tags:
@@ -420,6 +417,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: add-project
+  /application:
+    get:
+      summary: Application Status
+      description: Get the state of the application
+      tags:
+        - Application
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/application_data'
+      operationId: get-application-state
   /application/restart:
     post:
       summary: Application Restart
@@ -1438,6 +1449,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: get-constructs-current
+    put:
+      summary: Construct Current Set Properties
+      description: Set the properties of the active Construct in the active Group.
+      tags:
+        - Projects
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: Level
+          description: Level of detail. If set to ALL the full data model is returned.
+      requestBody:
+        description: json with construct data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/construct_data' 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/construct_data'
+        4XX:
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+      operationId: set-constructs-current
     delete:
       summary: Construct Current Delete
       description: Delete the current selected Construct. The prior Construct in the Group will become the new active. If no Constructs are left in the Group a new Construct is created automatically.
@@ -2499,7 +2542,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shots_data'
+                $ref: '#/components/schemas/shot_data'
         4XX:
           description: Client Error
           content:
@@ -2658,7 +2701,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shots_data'
+                $ref: '#/components/schemas/shot_data'
         4XX:
           description: Client Error
           content:
@@ -2856,6 +2899,11 @@ components:
           type: string
           x-stoplight:
             id: meybeuvjgewya
+        rest_version:
+          description: REST API version (readonly)
+          type: string
+          x-stoplight:
+            id: 8h9y1l7n2g5c8
         system_name:
           description: System name
           type: string
@@ -2898,6 +2946,25 @@ components:
           type: boolean
           x-stoplight:
             id: k7f2m9xn4p1q3
+    application_data:
+      title: application_data
+      type: object
+      properties:
+        mudule:
+          description: Current active module (Start, Construct, Player)
+          type: string
+          x-stoplight:
+            id: 9h8y1l7n2g5c8
+        project:
+          description: Current active project if any
+          type: string
+          x-stoplight:
+            id: 9h8y1l7n2g5c8
+        position:
+          description: Current position in the player
+          type: string
+          x-stoplight:
+            id: 9h8y1l7n2g5c8
     project_data:
       title: project_data
       type: object
@@ -3316,40 +3383,38 @@ components:
               description: Short error message
               x-stoplight:
                 id: c8znsaozon4qd
-    notes_data:
-      type: array
-      title: notes_data
-      description: Notes
-      items:
-        x-stoplight:
-          id: vtbm0jxmheb8r
-        type: object
-        properties:
-          status:
-            type: integer
-            description: Color of the note
-            x-stoplight:
-              id: lvdkwp5civlla
-          author:
-            type: string
-            description: Author of the note
-            x-stoplight:
-              id: nsxjjyhahpshx
-          frame:
-            type: integer
-            description: Frame number in the Shot of the note
-            x-stoplight:
-              id: e8bijkkhy2rds
-          id:
-            type: integer
-            description: Unique identifier of the note 
-            x-stoplight:
-              id: xrlleoyx7b01t
-          note:
-            type: string
-            description: Content of the note
-            x-stoplight:
-              id: a56yyab412kj1
+    note_data:
+      type: object
+      title: note_data
+      description: Note
+      x-stoplight:
+        id: vtbm0jxmheb8r
+      properties:
+        status:
+          type: integer
+          description: Color of the note
+          x-stoplight:
+            id: lvdkwp5civlla
+        author:
+          type: string
+          description: Author of the note
+          x-stoplight:
+            id: nsxjjyhahpshx
+        frame:
+          type: integer
+          description: Frame number in the Shot of the note
+          x-stoplight:
+            id: e8bijkkhy2rds
+        id:
+          type: integer
+          description: Unique identifier of the note 
+          x-stoplight:
+            id: xrlleoyx7b01t
+        note:
+          type: string
+          description: Content of the note
+          x-stoplight:
+            id: a56yyab412kj1    
     groups_data:
       type: object
       title: groups_data
@@ -3378,18 +3443,27 @@ components:
             id: 7inr66np4l15r
           description: Name of the Group
         notes:
-          $ref: '#/components/schemas/notes_data'
+          type: array
+          description: Notes of the Group
+          items:
+            $ref: '#/components/schemas/note_data'
         uuid:
           $ref: '#/components/schemas/uuid'
         constructs:
           type: array
+          description: List of Constructs in the Group
           items:
             $ref: '#/components/schemas/construct_data'
     shots_data:
-      type: array
-      title: List of shots
-      items:
-        $ref: '#/components/schemas/shot_data'
+      type: object
+      title: shots_data
+      description: List of shots
+      properties:
+        shots:
+          type: array
+          title: List of shots
+          items:
+            $ref: '#/components/schemas/shot_data'
     shot_data:
       type: object
       description: Shot data
@@ -3627,7 +3701,10 @@ components:
         metadata:
           $ref: '#/components/schemas/metadata'
         notes:
-          $ref: '#/components/schemas/notes_data'
+          type: array
+          description: Notes of the Shot
+          items:
+            $ref: '#/components/schemas/note_data'
         staging:
           $ref: '#/components/schemas/staging_data'
         inputs:
@@ -3662,10 +3739,9 @@ components:
             id: m2hzr306ij724
         notes:
           type: array
-          x-stoplight:
-            id: 5m87quvt7zg2n
+          description: Notes of the Construct
           items:
-            $ref: '#/components/schemas/notes_data'
+            $ref: '#/components/schemas/note_data'
         parent:
           $ref: '#/components/schemas/uuid'
         record_tc:
@@ -3781,10 +3857,15 @@ components:
           tc: '00:00:28:12'
           timeline: Test
     slots_data:
-      type: array
+      type: object
       title: slots_data
-      items:
-        $ref: '#/components/schemas/slot_data'
+      description: List of Slots
+      properties:
+        slots:
+          type: array
+          description: List of Slots
+          items:
+            $ref: '#/components/schemas/slot_data'
     slot_data:
       type: object
       title: slot_data
@@ -4607,10 +4688,13 @@ components:
                 $ref: '#/components/schemas/shot_data'
     user_data_list:
       title: list of Users
-      type: array
-      items:
-        $ref: '#/components/schemas/user_data'
       description: List of available User profiles
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/user_data'
     user_data:
       type: object
       description: User data
@@ -4747,9 +4831,14 @@ components:
             id: kbseuhub1egc5
         file:
           type: string
-          description: File path to save the image to. If not provided, the image will be return as jpg data in the http response.
+          description: Full file path name on the local http server. Supported file formats are *.png, *.jpg, *.tif. 
           x-stoplight:
             id: kbseuhub1egc6
+        mime_type:
+          type: string
+          description: Mime type of the image data when no file path is provided. The image data is returned to the client. Supported mime types are image/png, image/jpeg.
+          x-stoplight:
+            id: kbseuhub1egc7
     vector2:
       type: object
       description: 2D Vector
