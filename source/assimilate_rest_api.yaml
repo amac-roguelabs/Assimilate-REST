@@ -2941,6 +2941,12 @@ components:
           type: boolean
           x-stoplight:
             id: uxdna1ryem5m8
+        default_fps:
+          description: System-level default framerate setting (readonly). Allows remote clients to determine the configured framerate without requiring a project or timeline to be loaded.
+          type: number
+        count_from_one:
+          description: Whether the system counts frames starting from 1 (true) or 0 (false). Critical for remote clients to correctly interpret frame numbers from the transport.
+          type: boolean
     application_data:
       title: application_data
       type: object
@@ -3800,6 +3806,9 @@ components:
         fps:
           description: Playback framerate
           type: number
+        target_fps:
+          description: Target framerate of the current timeline/construct (the configured FPS, independent of actual playback speed). Useful for remote clients that need to match the timeline framerate for frame-accurate preview or synchronization.
+          type: number
         frame:
           description: Current frame position
           type: integer
@@ -3825,6 +3834,11 @@ components:
             - PLAY_FRW
             - PLAY_REV
             - RECORD
+            - STOP
+            - JOG_FRW
+            - JOG_REV
+            - SHUTTLE_FRW
+            - SHUTTLE_REV
         range:
           description: View range is active / not
           type: boolean
@@ -3834,9 +3848,15 @@ components:
         tc:
           description: Current timecode
           type: string
+        src_tc:
+          description: Source timecode of the current shot at the current frame position
+          type: string
         timeline:
           description: Name of the construct being played
           type: string
+        duration:
+          description: Total duration of the current construct/timeline in frames
+          type: integer
       x-examples:
         Example 1:
           audio: NONE
