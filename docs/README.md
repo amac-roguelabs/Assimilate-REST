@@ -164,17 +164,6 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = assimilate_client.ApplicationApi(assimilate_client.ApiClient(configuration))
-body = assimilate_client.LutRequest() # LutRequest | json with the Shot UUID, frame position and lut file path
-
-try:
-    # Get LUT of Shot at Frame
-    api_response = api_instance.do_application_render_lut(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ApplicationApi->do_application_render_lut: %s\n" % e)
-
-# create an instance of the API class
-api_instance = assimilate_client.ApplicationApi(assimilate_client.ApiClient(configuration))
 body = assimilate_client.ImageSnapshot() # ImageSnapshot | json with the Shot UUID, frame position and render path
 
 try:
@@ -311,7 +300,6 @@ Class | Method | HTTP request | Description
 *ApplicationApi* | [**do_application_project_enter**](docs/ApplicationApi.md#do_application_project_enter) | **POST** /application/project/enter/{projectID} | Project Enter
 *ApplicationApi* | [**do_application_project_exit**](docs/ApplicationApi.md#do_application_project_exit) | **POST** /application/project/exit | Project Exit
 *ApplicationApi* | [**do_application_render_delete_media_item**](docs/ApplicationApi.md#do_application_render_delete_media_item) | **POST** /application/render/deletemedia/{output_UUID} | Render Queue Item Delete Media
-*ApplicationApi* | [**do_application_render_lut**](docs/ApplicationApi.md#do_application_render_lut) | **POST** /application/tools/lut | Get LUT of Shot at Frame
 *ApplicationApi* | [**do_application_render_snapshot**](docs/ApplicationApi.md#do_application_render_snapshot) | **POST** /application/tools/image | Render Snapshot
 *ApplicationApi* | [**do_application_render_start**](docs/ApplicationApi.md#do_application_render_start) | **POST** /application/render/start | Render Queue Start
 *ApplicationApi* | [**do_application_render_stop**](docs/ApplicationApi.md#do_application_render_stop) | **POST** /application/render/stop | Render Queue Stop
@@ -437,7 +425,6 @@ Class | Method | HTTP request | Description
  - [InputData](docs/InputData.md)
  - [InputsData](docs/InputsData.md)
  - [KeyFrameData](docs/KeyFrameData.md)
- - [LutRequest](docs/LutRequest.md)
  - [Metadata](docs/Metadata.md)
  - [MetadataInner](docs/MetadataInner.md)
  - [MoveConstructData](docs/MoveConstructData.md)
