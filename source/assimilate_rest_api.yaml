@@ -132,7 +132,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: set-system-users-current
-  /system/users/select/{username}:
+  /sytem/users/select/{username}:
     parameters:
       - schema:
           type: string
@@ -155,7 +155,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: select-system-user
-  /system/users/new:
+  /sytem/users/new:
     post:
       summary: System User Add
       description: Add a new User profile.

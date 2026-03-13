@@ -116,7 +116,7 @@ class SystemApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/system/users/new', 'POST',
+            '/sytem/users/new', 'POST',
             path_params,
             query_params,
             header_params,
@@ -567,7 +567,7 @@ class SystemApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/system/users/select/{username}', 'POST',
+            '/sytem/users/select/{username}', 'POST',
             path_params,
             query_params,
             header_params,

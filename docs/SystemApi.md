@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost:8080/APIV2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_system_users**](SystemApi.md#add_system_users) | **POST** /system/users/new | System User Add
+[**add_system_users**](SystemApi.md#add_system_users) | **POST** /sytem/users/new | System User Add
 [**get_system_logs**](SystemApi.md#get_system_logs) | **GET** /system/logs | Get Logs
 [**get_system_properties**](SystemApi.md#get_system_properties) | **GET** /system | System Settings Get
 [**get_system_users**](SystemApi.md#get_system_users) | **GET** /system/users | System Users List
 [**get_system_users_current**](SystemApi.md#get_system_users_current) | **GET** /system/users/current | System User Current
-[**select_system_user**](SystemApi.md#select_system_user) | **POST** /system/users/select/{username} | System User Select
+[**select_system_user**](SystemApi.md#select_system_user) | **POST** /sytem/users/select/{username} | System User Select
 [**set_system_properties**](SystemApi.md#set_system_properties) | **PUT** /system | System Settings Set
 [**set_system_users_current**](SystemApi.md#set_system_users_current) | **PUT** /system/users/current | System User Update
 
