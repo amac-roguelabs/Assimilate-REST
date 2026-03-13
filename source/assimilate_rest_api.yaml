@@ -3327,31 +3327,9 @@ components:
         fps:
           description: Playback framerate
           type: number
-        construct_uuid:
-          $ref: '#/components/schemas/uuid'
         frame:
-          description: Current timeline frame position
+          description: Current frame position
           type: integer
-        timecodec:
-          description: Current timelinetimecode (readonly)
-          type: string
-        slot_index:
-          description: Current Slot index being played in the timeline
-          type: integer
-        shot_uuid:
-          $ref: '#/components/schemas/uuid'
-        shot_frame:
-          description: Current frame position in the Shot being played
-          type: integer
-        shot_timecode:
-          description: Current record timecode of the Shot being played (readonly)
-          type: string
-        version:
-          description: Version index of the shot in the Player.
-          type: integer
-        session:
-          description: Session type the player is in. One of 'timeline,output,derived_output,shot,compare,slot' (readonly).
-          type: string
         length:
           description: Length of the media in the Player in frames
           type: integer
@@ -3380,9 +3358,26 @@ components:
         speed:
           description: Playback multiplier
           type: integer
+        tc:
+          description: Current timecode
+          type: string
         timeline:
           description: Name of the construct being played
           type: string
+      x-examples:
+        Example 1:
+          audio: NONE
+          fps: 24
+          frame: 684
+          length: 810
+          loop: BOUNCE
+          mark_in: 0
+          mark_out: 809
+          mode: PAUSE
+          range: false
+          speed: 1
+          tc: '00:00:28:12'
+          timeline: Test
     slots_data:
       type: object
       title: slots_data
