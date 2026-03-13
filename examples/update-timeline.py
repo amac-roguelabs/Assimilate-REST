@@ -53,6 +53,9 @@ def build_scale_channel(channel_id, start_key, end_key):
 
 
 def apply_transition(slot, is_continuous):
+    if slot.transition is None:
+        slot.transition = SlotDataTransition(after=0,before=0,type="Cut")
+ 
     if is_continuous:
         slot.transition.after = TRANSITION_FRAMES
         slot.transition.before = TRANSITION_FRAMES
@@ -61,7 +64,6 @@ def apply_transition(slot, is_continuous):
         slot.transition.after = 0
         slot.transition.before = 0
         slot.transition.type = "Cut"
-
 
 def process_shot(item, prev_item, cw, ch):
     slot = projects_api.get_construct_current_slot(slot_idx=item.slot_idx)

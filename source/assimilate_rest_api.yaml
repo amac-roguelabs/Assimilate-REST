@@ -132,7 +132,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: set-system-users-current
-  /sytem/users/select/{username}:
+  /system/users/select/{username}:
     parameters:
       - schema:
           type: string
@@ -155,7 +155,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: select-system-user
-  /sytem/users/new:
+  /system/users/new:
     post:
       summary: System User Add
       description: Add a new User profile.
@@ -178,6 +178,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: add-system-users
+  /system/logs:
+    get:
+      summary: Get Logs
+      description: Get the server application logs.
+      parameters:
+      - schema:
+          type: integer
+        in: query
+        name: lognr
+        description: Get log information of previous sessions. 0 (default) is the current session, 1 the previous session, etc. with a maximum of 10.
+      - schema:
+          type: integer
+        in: query
+        name: offset
+        description: Offset in the log file in bytes.
+      tags:
+        - System
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain; charset=utf-8
+          content:
+            text/plain:
+              schema:
+                type: string
+        4XX:
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+      operationId: get-system-logs
   /projects:
     get:
       summary: Project List
@@ -757,6 +793,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/error_message'
       operationId: do-application-render-snapshot
+  /application/tools/lut:
+    post:
+      summary: Get LUT of Shot at Frame
+      description: Get the LUT of the Shot with UUID at the specified frame postion. Support multiple Lut formats, specified in the request body. Returns an error when the shot is not found or can not be created.
+      tags:
+        - Application
+      requestBody:
+        description: json with the Shot UUID, frame position and lut file path
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/lut_request'
+      responses:
+        '200':
+          description: OK
+          content:
+            image/jpeg:
+              schema:
+                type: string
+        4XX:
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_message'
+      operationId: do-application-render-lut
   /groups:
     parameters:
       - schema:
@@ -3264,9 +3327,31 @@ components:
         fps:
           description: Playback framerate
           type: number
+        construct_uuid:
+          $ref: '#/components/schemas/uuid'
         frame:
-          description: Current frame position
+          description: Current timeline frame position
           type: integer
+        timecodec:
+          description: Current timelinetimecode (readonly)
+          type: string
+        slot_index:
+          description: Current Slot index being played in the timeline
+          type: integer
+        shot_uuid:
+          $ref: '#/components/schemas/uuid'
+        shot_frame:
+          description: Current frame position in the Shot being played
+          type: integer
+        shot_timecode:
+          description: Current record timecode of the Shot being played (readonly)
+          type: string
+        version:
+          description: Version index of the shot in the Player.
+          type: integer
+        session:
+          description: Session type the player is in. One of 'timeline,output,derived_output,shot,compare,slot' (readonly).
+          type: string
         length:
           description: Length of the media in the Player in frames
           type: integer
@@ -3295,26 +3380,9 @@ components:
         speed:
           description: Playback multiplier
           type: integer
-        tc:
-          description: Current timecode
-          type: string
         timeline:
           description: Name of the construct being played
           type: string
-      x-examples:
-        Example 1:
-          audio: NONE
-          fps: 24
-          frame: 684
-          length: 810
-          loop: BOUNCE
-          mark_in: 0
-          mark_out: 809
-          mode: PAUSE
-          range: false
-          speed: 1
-          tc: '00:00:28:12'
-          timeline: Test
     slots_data:
       type: object
       title: slots_data
@@ -4210,6 +4278,27 @@ components:
           description: Mime type of the image data when no file path is provided. The image data is returned to the client. Supported mime types are image/png, image/jpeg.
           x-stoplight:
             id: kbseuhub1egc7
+    lut_request:
+      type: object
+      description: Settings for creating a snapshot image of a Shot
+      properties:
+        uuid:
+          $ref: '#/components/schemas/uuid'
+        frame:
+          type: integer
+          description: Frame number to create the image from
+          x-stoplight:
+              id: kbseuhub1egc4
+        file:
+          type: string
+          description: Full file path name on the local http server. Supported file formats are *.cube, *.3dl, *.lut, *.xml and *.txt. 
+          x-stoplight:
+            id: kbseuhub1egc5
+        lut_type:
+          type: string
+          description: LUT type to be generated. Supported LUT types are cube, 3dl, lut, xml and txt.
+          x-stoplight:
+            id: kbseuhub1egc6
     vector2:
       type: object
       description: 2D Vector

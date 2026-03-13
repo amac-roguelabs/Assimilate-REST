@@ -116,7 +116,7 @@ class SystemApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/sytem/users/new', 'POST',
+            '/system/users/new', 'POST',
             path_params,
             query_params,
             header_params,
@@ -124,6 +124,101 @@ class SystemApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_system_logs(self, **kwargs):  # noqa: E501
+        """Get Logs  # noqa: E501
+
+        Get the server application logs.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_system_logs(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int lognr: Get log information of previous sessions. 0 (default) is the current session, 1 the previous session, etc. with a maximum of 10.
+        :param int offset: Offset in the log file in bytes.
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_system_logs_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.get_system_logs_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def get_system_logs_with_http_info(self, **kwargs):  # noqa: E501
+        """Get Logs  # noqa: E501
+
+        Get the server application logs.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_system_logs_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int lognr: Get log information of previous sessions. 0 (default) is the current session, 1 the previous session, etc. with a maximum of 10.
+        :param int offset: Offset in the log file in bytes.
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['lognr', 'offset']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_system_logs" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'lognr' in params:
+            query_params.append(('lognr', params['lognr']))  # noqa: E501
+        if 'offset' in params:
+            query_params.append(('offset', params['offset']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/system/logs', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -472,7 +567,7 @@ class SystemApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/sytem/users/select/{username}', 'POST',
+            '/system/users/select/{username}', 'POST',
             path_params,
             query_params,
             header_params,

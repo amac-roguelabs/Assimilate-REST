@@ -50,6 +50,7 @@ from assimilate_client.models.image_snapshot import ImageSnapshot
 from assimilate_client.models.input_data import InputData
 from assimilate_client.models.inputs_data import InputsData
 from assimilate_client.models.key_frame_data import KeyFrameData
+from assimilate_client.models.lut_request import LutRequest
 from assimilate_client.models.metadata import Metadata
 from assimilate_client.models.metadata_inner import MetadataInner
 from assimilate_client.models.move_construct_data import MoveConstructData

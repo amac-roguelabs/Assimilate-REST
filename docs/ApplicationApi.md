@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**do_application_project_enter**](ApplicationApi.md#do_application_project_enter) | **POST** /application/project/enter/{projectID} | Project Enter
 [**do_application_project_exit**](ApplicationApi.md#do_application_project_exit) | **POST** /application/project/exit | Project Exit
 [**do_application_render_delete_media_item**](ApplicationApi.md#do_application_render_delete_media_item) | **POST** /application/render/deletemedia/{output_UUID} | Render Queue Item Delete Media
+[**do_application_render_lut**](ApplicationApi.md#do_application_render_lut) | **POST** /application/tools/lut | Get LUT of Shot at Frame
 [**do_application_render_snapshot**](ApplicationApi.md#do_application_render_snapshot) | **POST** /application/tools/image | Render Snapshot
 [**do_application_render_start**](ApplicationApi.md#do_application_render_start) | **POST** /application/render/start | Render Queue Start
 [**do_application_render_stop**](ApplicationApi.md#do_application_render_stop) | **POST** /application/render/stop | Render Queue Stop
@@ -534,6 +535,54 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **do_application_render_lut**
+> str do_application_render_lut(body)
+
+Get LUT of Shot at Frame
+
+Get the LUT of the Shot with UUID at the specified frame postion. Support multiple Lut formats, specified in the request body. Returns an error when the shot is not found or can not be created.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import assimilate_client
+from assimilate_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = assimilate_client.ApplicationApi()
+body = assimilate_client.LutRequest() # LutRequest | json with the Shot UUID, frame position and lut file path
+
+try:
+    # Get LUT of Shot at Frame
+    api_response = api_instance.do_application_render_lut(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ApplicationApi->do_application_render_lut: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**LutRequest**](LutRequest.md)| json with the Shot UUID, frame position and lut file path | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: image/jpeg, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

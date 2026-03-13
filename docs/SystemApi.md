@@ -4,11 +4,12 @@ All URIs are relative to *http://localhost:8080/APIV2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_system_users**](SystemApi.md#add_system_users) | **POST** /sytem/users/new | System User Add
+[**add_system_users**](SystemApi.md#add_system_users) | **POST** /system/users/new | System User Add
+[**get_system_logs**](SystemApi.md#get_system_logs) | **GET** /system/logs | Get Logs
 [**get_system_properties**](SystemApi.md#get_system_properties) | **GET** /system | System Settings Get
 [**get_system_users**](SystemApi.md#get_system_users) | **GET** /system/users | System Users List
 [**get_system_users_current**](SystemApi.md#get_system_users_current) | **GET** /system/users/current | System User Current
-[**select_system_user**](SystemApi.md#select_system_user) | **POST** /sytem/users/select/{username} | System User Select
+[**select_system_user**](SystemApi.md#select_system_user) | **POST** /system/users/select/{username} | System User Select
 [**set_system_properties**](SystemApi.md#set_system_properties) | **PUT** /system | System Settings Set
 [**set_system_users_current**](SystemApi.md#set_system_users_current) | **PUT** /system/users/current | System User Update
 
@@ -56,6 +57,56 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_system_logs**
+> str get_system_logs(lognr=lognr, offset=offset)
+
+Get Logs
+
+Get the server application logs.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import assimilate_client
+from assimilate_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = assimilate_client.SystemApi()
+lognr = 56 # int | Get log information of previous sessions. 0 (default) is the current session, 1 the previous session, etc. with a maximum of 10. (optional)
+offset = 56 # int | Offset in the log file in bytes. (optional)
+
+try:
+    # Get Logs
+    api_response = api_instance.get_system_logs(lognr=lognr, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SystemApi->get_system_logs: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lognr** | **int**| Get log information of previous sessions. 0 (default) is the current session, 1 the previous session, etc. with a maximum of 10. | [optional] 
+ **offset** | **int**| Offset in the log file in bytes. | [optional] 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

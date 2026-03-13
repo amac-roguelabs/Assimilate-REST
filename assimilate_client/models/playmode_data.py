@@ -30,7 +30,15 @@ class PlaymodeData(object):
     swagger_types = {
         'audio': 'str',
         'fps': 'float',
+        'construct_uuid': 'Uuid',
         'frame': 'int',
+        'timecodec': 'str',
+        'slot_index': 'int',
+        'shot_uuid': 'Uuid',
+        'shot_frame': 'int',
+        'shot_timecode': 'str',
+        'version': 'int',
+        'session': 'str',
         'length': 'int',
         'loop': 'str',
         'mark_in': 'int',
@@ -38,14 +46,21 @@ class PlaymodeData(object):
         'mode': 'str',
         'range': 'bool',
         'speed': 'int',
-        'tc': 'str',
         'timeline': 'str'
     }
 
     attribute_map = {
         'audio': 'audio',
         'fps': 'fps',
+        'construct_uuid': 'construct_uuid',
         'frame': 'frame',
+        'timecodec': 'timecodec',
+        'slot_index': 'slot_index',
+        'shot_uuid': 'shot_uuid',
+        'shot_frame': 'shot_frame',
+        'shot_timecode': 'shot_timecode',
+        'version': 'version',
+        'session': 'session',
         'length': 'length',
         'loop': 'loop',
         'mark_in': 'mark_in',
@@ -53,15 +68,22 @@ class PlaymodeData(object):
         'mode': 'mode',
         'range': 'range',
         'speed': 'speed',
-        'tc': 'tc',
         'timeline': 'timeline'
     }
 
-    def __init__(self, audio=None, fps=None, frame=None, length=None, loop=None, mark_in=None, mark_out=None, mode=None, range=None, speed=None, tc=None, timeline=None):  # noqa: E501
+    def __init__(self, audio=None, fps=None, construct_uuid=None, frame=None, timecodec=None, slot_index=None, shot_uuid=None, shot_frame=None, shot_timecode=None, version=None, session=None, length=None, loop=None, mark_in=None, mark_out=None, mode=None, range=None, speed=None, timeline=None):  # noqa: E501
         """PlaymodeData - a model defined in Swagger"""  # noqa: E501
         self._audio = None
         self._fps = None
+        self._construct_uuid = None
         self._frame = None
+        self._timecodec = None
+        self._slot_index = None
+        self._shot_uuid = None
+        self._shot_frame = None
+        self._shot_timecode = None
+        self._version = None
+        self._session = None
         self._length = None
         self._loop = None
         self._mark_in = None
@@ -69,15 +91,30 @@ class PlaymodeData(object):
         self._mode = None
         self._range = None
         self._speed = None
-        self._tc = None
         self._timeline = None
         self.discriminator = None
         if audio is not None:
             self.audio = audio
         if fps is not None:
             self.fps = fps
+        if construct_uuid is not None:
+            self.construct_uuid = construct_uuid
         if frame is not None:
             self.frame = frame
+        if timecodec is not None:
+            self.timecodec = timecodec
+        if slot_index is not None:
+            self.slot_index = slot_index
+        if shot_uuid is not None:
+            self.shot_uuid = shot_uuid
+        if shot_frame is not None:
+            self.shot_frame = shot_frame
+        if shot_timecode is not None:
+            self.shot_timecode = shot_timecode
+        if version is not None:
+            self.version = version
+        if session is not None:
+            self.session = session
         if length is not None:
             self.length = length
         if loop is not None:
@@ -92,8 +129,6 @@ class PlaymodeData(object):
             self.range = range
         if speed is not None:
             self.speed = speed
-        if tc is not None:
-            self.tc = tc
         if timeline is not None:
             self.timeline = timeline
 
@@ -144,10 +179,31 @@ class PlaymodeData(object):
         self._fps = fps
 
     @property
+    def construct_uuid(self):
+        """Gets the construct_uuid of this PlaymodeData.  # noqa: E501
+
+
+        :return: The construct_uuid of this PlaymodeData.  # noqa: E501
+        :rtype: Uuid
+        """
+        return self._construct_uuid
+
+    @construct_uuid.setter
+    def construct_uuid(self, construct_uuid):
+        """Sets the construct_uuid of this PlaymodeData.
+
+
+        :param construct_uuid: The construct_uuid of this PlaymodeData.  # noqa: E501
+        :type: Uuid
+        """
+
+        self._construct_uuid = construct_uuid
+
+    @property
     def frame(self):
         """Gets the frame of this PlaymodeData.  # noqa: E501
 
-        Current frame position  # noqa: E501
+        Current timeline frame position  # noqa: E501
 
         :return: The frame of this PlaymodeData.  # noqa: E501
         :rtype: int
@@ -158,13 +214,172 @@ class PlaymodeData(object):
     def frame(self, frame):
         """Sets the frame of this PlaymodeData.
 
-        Current frame position  # noqa: E501
+        Current timeline frame position  # noqa: E501
 
         :param frame: The frame of this PlaymodeData.  # noqa: E501
         :type: int
         """
 
         self._frame = frame
+
+    @property
+    def timecodec(self):
+        """Gets the timecodec of this PlaymodeData.  # noqa: E501
+
+        Current timelinetimecode (readonly)  # noqa: E501
+
+        :return: The timecodec of this PlaymodeData.  # noqa: E501
+        :rtype: str
+        """
+        return self._timecodec
+
+    @timecodec.setter
+    def timecodec(self, timecodec):
+        """Sets the timecodec of this PlaymodeData.
+
+        Current timelinetimecode (readonly)  # noqa: E501
+
+        :param timecodec: The timecodec of this PlaymodeData.  # noqa: E501
+        :type: str
+        """
+
+        self._timecodec = timecodec
+
+    @property
+    def slot_index(self):
+        """Gets the slot_index of this PlaymodeData.  # noqa: E501
+
+        Current Slot index being played in the timeline  # noqa: E501
+
+        :return: The slot_index of this PlaymodeData.  # noqa: E501
+        :rtype: int
+        """
+        return self._slot_index
+
+    @slot_index.setter
+    def slot_index(self, slot_index):
+        """Sets the slot_index of this PlaymodeData.
+
+        Current Slot index being played in the timeline  # noqa: E501
+
+        :param slot_index: The slot_index of this PlaymodeData.  # noqa: E501
+        :type: int
+        """
+
+        self._slot_index = slot_index
+
+    @property
+    def shot_uuid(self):
+        """Gets the shot_uuid of this PlaymodeData.  # noqa: E501
+
+
+        :return: The shot_uuid of this PlaymodeData.  # noqa: E501
+        :rtype: Uuid
+        """
+        return self._shot_uuid
+
+    @shot_uuid.setter
+    def shot_uuid(self, shot_uuid):
+        """Sets the shot_uuid of this PlaymodeData.
+
+
+        :param shot_uuid: The shot_uuid of this PlaymodeData.  # noqa: E501
+        :type: Uuid
+        """
+
+        self._shot_uuid = shot_uuid
+
+    @property
+    def shot_frame(self):
+        """Gets the shot_frame of this PlaymodeData.  # noqa: E501
+
+        Current frame position in the Shot being played  # noqa: E501
+
+        :return: The shot_frame of this PlaymodeData.  # noqa: E501
+        :rtype: int
+        """
+        return self._shot_frame
+
+    @shot_frame.setter
+    def shot_frame(self, shot_frame):
+        """Sets the shot_frame of this PlaymodeData.
+
+        Current frame position in the Shot being played  # noqa: E501
+
+        :param shot_frame: The shot_frame of this PlaymodeData.  # noqa: E501
+        :type: int
+        """
+
+        self._shot_frame = shot_frame
+
+    @property
+    def shot_timecode(self):
+        """Gets the shot_timecode of this PlaymodeData.  # noqa: E501
+
+        Current record timecode of the Shot being played (readonly)  # noqa: E501
+
+        :return: The shot_timecode of this PlaymodeData.  # noqa: E501
+        :rtype: str
+        """
+        return self._shot_timecode
+
+    @shot_timecode.setter
+    def shot_timecode(self, shot_timecode):
+        """Sets the shot_timecode of this PlaymodeData.
+
+        Current record timecode of the Shot being played (readonly)  # noqa: E501
+
+        :param shot_timecode: The shot_timecode of this PlaymodeData.  # noqa: E501
+        :type: str
+        """
+
+        self._shot_timecode = shot_timecode
+
+    @property
+    def version(self):
+        """Gets the version of this PlaymodeData.  # noqa: E501
+
+        Version index of the shot in the Player.  # noqa: E501
+
+        :return: The version of this PlaymodeData.  # noqa: E501
+        :rtype: int
+        """
+        return self._version
+
+    @version.setter
+    def version(self, version):
+        """Sets the version of this PlaymodeData.
+
+        Version index of the shot in the Player.  # noqa: E501
+
+        :param version: The version of this PlaymodeData.  # noqa: E501
+        :type: int
+        """
+
+        self._version = version
+
+    @property
+    def session(self):
+        """Gets the session of this PlaymodeData.  # noqa: E501
+
+        Session type the player is in. One of 'timeline,output,derived_output,shot,compare,slot' (readonly).  # noqa: E501
+
+        :return: The session of this PlaymodeData.  # noqa: E501
+        :rtype: str
+        """
+        return self._session
+
+    @session.setter
+    def session(self, session):
+        """Sets the session of this PlaymodeData.
+
+        Session type the player is in. One of 'timeline,output,derived_output,shot,compare,slot' (readonly).  # noqa: E501
+
+        :param session: The session of this PlaymodeData.  # noqa: E501
+        :type: str
+        """
+
+        self._session = session
 
     @property
     def length(self):
@@ -326,29 +541,6 @@ class PlaymodeData(object):
         """
 
         self._speed = speed
-
-    @property
-    def tc(self):
-        """Gets the tc of this PlaymodeData.  # noqa: E501
-
-        Current timecode  # noqa: E501
-
-        :return: The tc of this PlaymodeData.  # noqa: E501
-        :rtype: str
-        """
-        return self._tc
-
-    @tc.setter
-    def tc(self, tc):
-        """Sets the tc of this PlaymodeData.
-
-        Current timecode  # noqa: E501
-
-        :param tc: The tc of this PlaymodeData.  # noqa: E501
-        :type: str
-        """
-
-        self._tc = tc
 
     @property
     def timeline(self):

@@ -169,3 +169,12 @@ The availability and coverage of the REST API depends on the specific
 application within the Assimilate Product Suite that is used, as well as
 the active toolset and license that is used.
 
+**Other Interfaces**
+
+The Assimilate Product Suite provides multiple interfaces for different purposes.
+- REST-API. (http) Interface for accessing and controling Project (media)data, System settings and Application functions (Player, Rendering, etc.) 
+[https://github.com/Assimilate-Inc/Assimilate-REST](https://github.com/Assimilate-Inc/Assimilate-REST)
+- SPA. API for effects-, reader-, writer- and generator-plugins to be used in the render pipeline of the application.
+[https://github.com/Assimilate-Inc/Assimilate-SPA](https://github.com/Assimilate-Inc/Assimilate-SPA)
+- Video-IO. API for plugins to act as an output or capture device for the application.
+[https://github.com/Assimilate-Inc/Assimilate-Video-IO](https://github.com/Assimilate-Inc/Assimilate-Video-IO)
